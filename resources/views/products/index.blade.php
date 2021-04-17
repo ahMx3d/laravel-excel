@@ -16,20 +16,12 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         {{ __('Products') }}
-                        <a
-                        {{-- onclick="
-                                event.preventDefault();
-                                document.getElementById('products-export').submit();
-                            " --}}
-                            href="{{ route('products.export') }}"
-                            class="btn btn-outline-primary">Export</a>
-                        {{-- <form id="products-export"
-                            action="{{ route('products.export') }}"
-                            method="post"
-                            style="display: none;"
-                            class="d-none">
-                            @csrf
-                        </form> --}}
+                        <div>
+                            <a href="{{ route('products.import') }}"
+                                class="btn btn-outline-success">Import</a>
+                            <a href="{{ route('products.export') }}"
+                                class="btn btn-outline-primary">Export</a>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -65,13 +57,15 @@
                                     </tr>
                                 @endforelse
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        {!! $products->appends(request()->input())->links() !!}
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            @if ($products->count())
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            {!! $products->appends(request()->input())->links() !!}
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            @endif
                         </table>
 
                     </div>

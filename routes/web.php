@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/products/upload', 'ProductController@upload')
+    ->name('products.upload');
+
+Route::get('/products/import', 'ProductController@import')
+    ->name('products.import');
+
 Route::get('/products/export', 'ProductController@export')
     ->name('products.export');
-Route::get('/products', 'ProductController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/products', 'ProductController@index')
+    ->name('products.index');
+Route::get('/', 'ProductController@index');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
